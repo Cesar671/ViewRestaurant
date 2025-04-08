@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import { Theme } from "./theme";
+import { Box } from "@mui/material";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -24,9 +29,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
-      </body>
+      <Theme>
+        <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <Box
+          sx={{
+            bgcolor: 'rgba(0,0,0,0.7)',
+            '& .MuiPaper-root':{
+              bgcolor: 'rgba(0,0,0,0) !important'
+            },
+            width: "100%",
+            height: "100%",
+            position:"fixed",
+            top:0,
+            zIndex:-100,
+          }}
+        />
+            {children}
+
+        </body>
+      </Theme>
     </html>
   );
 }
